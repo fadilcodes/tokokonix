@@ -1,9 +1,9 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-# Copy semua file kodingan ke dalam server
+# Copy kodingan
 COPY . .
 
-# Image ini butuh environment variable buat skip composer di awal biar kita bisa jalanin manual
+# Settingan Wajib
 ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
@@ -12,12 +12,11 @@ ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# --- BAGIAN PENTING YANG KURANG KEMARIN ---
-# Kita suruh server install library (bikin folder vendor)
+# --- BAGIAN PENTING ---
+# Install Library PHP (Biar folder vendor muncul)
 RUN composer install --no-dev --optimize-autoloader
 
-# Kita suruh server build asset (bikin CSS/JS)
-RUN npm install && npm run build
-# ------------------------------------------
+# CATATAN: Kita HAPUS perintah 'npm install' biar deploy gak gagal.
+# ----------------------
 
 CMD ["/start.sh"]
