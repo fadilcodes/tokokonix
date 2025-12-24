@@ -4,7 +4,6 @@ FROM richarvey/nginx-php-fpm:3.1.6
 COPY . .
 
 # Settingan Wajib
-ENV SKIP_COMPOSER 1
 ENV WEBROOT /var/www/html/public
 ENV PHP_ERRORS_STDERR 1
 ENV APP_ENV production
@@ -12,11 +11,13 @@ ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# --- BAGIAN PENTING ---
-# Install Library PHP (Biar folder vendor muncul)
-RUN composer install --no-dev --optimize-autoloader
+# --- PERBAIKAN DISINI ---
+# Kita tambahin '--no-scripts' biar dia gak rewel nyari .env pas lagi build
+# Kita tambahin '--no-progress' biar log-nya gak penuh sampah
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-progress
+# ------------------------
 
-# CATATAN: Kita HAPUS perintah 'npm install' biar deploy gak gagal.
-# ----------------------
+# Paksa update permission folder storage biar bisa upload gambar
+RUN chmod -R 777 storage bootstrap/cache
 
 CMD ["/start.sh"]
