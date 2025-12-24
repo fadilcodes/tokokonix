@@ -13,9 +13,7 @@ For a full list of available icons see [the SVG directory](./resources/svg).
 
 ## Documentation for older versions
 
-You are reading the documentation for `3.x` which uses Font Awesome 7.
-
-If you're wanting Font Awesome 6, please see the [docs for 2.x][link-2.x-docs].
+You are reading the documentation for `2.x`.
 
 If you're using Laravel 8 or below, please see the [docs for 1.x][link-1.x-docs].
 
@@ -23,8 +21,8 @@ Please see the [upgrade guide](UPGRADE.md) for information on how to upgrade to 
 
 ## Requirements
 
-- PHP 8.4 or higher
-- Laravel 12.x or higher
+- PHP 8.1 or higher
+- Laravel 10.x or higher
 
 ## Install
 
@@ -44,7 +42,7 @@ php artisan vendor:publish --tag=blade-fontawesome-config
 
 ## Usage
 
-Icons can be used as self-closing Blade components which will be compiled to SVG icons:
+Icons can be used a self-closing Blade components which will be compiled to SVG icons:
 
 ```blade
 <x-fas-cloud/>
@@ -83,12 +81,6 @@ And even use inline styles:
 - Sharp Thin (`fat:sharp`)
 - Sharp Duotone (`fad:sharp`)
 - Custom Kit Icons (`fak`)
-
-To remove any pro icon sets, set the value to `false` in the `blade-fontawesome` config file. For example:
-
-```php
-'sharp-regular' => false,
-```
 
 ### Raw SVG Icons
 
@@ -142,7 +134,7 @@ Blade Font Awesome uses Blade Icons under the hood. Please refer to [the Blade I
 
 ## Change log
 
-Please see [GitHub Releases][link-github-releases] for more information on what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Testing
 
@@ -187,12 +179,10 @@ Read more about Treeware at [treeware.earth][link-treeware].
 
 [link-packagist]: https://packagist.org/packages/owenvoke/blade-fontawesome
 [link-github-actions]: https://github.com/owenvoke/blade-fontawesome/actions
-[link-static-analysis]: https://github.com/owenvoke/blade-fontawesome/actions/workflows/static.yml
-[link-github-releases]: https://github.com/owenvoke/blade-fontawesome/releases
+[link-static-analysis]: https://github.com/owenvoke/skeleton-php/actions/workflows/static.yml
 [link-downloads]: https://packagist.org/packages/owenvoke/blade-fontawesome
 [link-treeware]: https://treeware.earth
 [link-treeware-gifting]: https://ecologi.com/owenvoke?gift-trees
 [link-1.x-docs]: https://github.com/owenvoke/blade-fontawesome/blob/1.x/README.md
-[link-2.x-docs]: https://github.com/owenvoke/blade-fontawesome/blob/2.x/README.md
 [link-author]: https://github.com/owenvoke
 [link-contributors]: ../../contributors

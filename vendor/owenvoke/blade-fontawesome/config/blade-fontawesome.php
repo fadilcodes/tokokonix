@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 return [
 
     'brands' => [
@@ -181,7 +179,19 @@ return [
 
     ],
 
-    'custom-icons' => [
+    /*
+    |-----------------------------------------------------------------
+    | Pro Icon Kits
+    |-----------------------------------------------------------------
+    |
+    | The following configuration values are for configuring the
+    | icon sets available as part of Font Awesome Pro.
+    |
+    | If you are not using Font Awesome Pro, this can be removed.
+    |
+    */
+
+    'custom' => [
 
         'prefix' => 'fak',
 

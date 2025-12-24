@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace OwenVoke\BladeFontAwesome;
 
 use BladeUI\Icons\Factory;
-use Illuminate\Contracts\Config\Repository as ConfigRepository;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use OwenVoke\BladeFontAwesome\Commands\SyncIconsCommand;
@@ -17,8 +17,7 @@ final class BladeFontAwesomeServiceProvider extends ServiceProvider
         $this->registerConfig();
 
         $this->callAfterResolving(Factory::class, function (Factory $factory, Container $container) {
-            /** @var ConfigRepository $config */
-            $config = $container->make(ConfigRepository::class);
+            $config = $container->make('config');
 
             if (is_dir($proIconsPath = resource_path('icons/blade-fontawesome'))) {
                 $this->registerProIcons($factory, $proIconsPath, $config);
@@ -54,18 +53,36 @@ final class BladeFontAwesomeServiceProvider extends ServiceProvider
         }
     }
 
-    private function registerProIcons(Factory $factory, string $proIconsPath, ConfigRepository $config): void
+    private function registerProIcons(Factory $factory, string $proIconsPath, Repository $config): void
     {
-        foreach ($config->get('blade-fontawesome', []) as $name => $itemSet) {
-            if ($itemSet === false) {
-                continue;
+        $addProIconSet = function (string $name, ?string $path = null) use ($factory, $proIconsPath, $config): void {
+            $path ??= $name;
+
+            if (! is_dir("{$proIconsPath}/{$path}")) {
+                return;
             }
 
-            if (! is_dir("{$proIconsPath}/{$name}")) {
-                continue;
-            }
+            $factory->add("fontawesome-{$name}", array_merge(['path' => "{$proIconsPath}/{$path}"], $config->get("blade-fontawesome.{$name}", [])));
+        };
 
-            $factory->add("fontawesome-{$name}", array_merge(['path' => "{$proIconsPath}/{$name}"], $config->get("blade-fontawesome.{$name}", [])));
-        }
+        // Standard icon sets
+        $addProIconSet('brands');
+        $addProIconSet('regular');
+        $addProIconSet('solid');
+
+        // Pro icon sets
+        $addProIconSet('light');
+        $addProIconSet('duotone');
+        $addProIconSet('thin');
+
+        // Sharp icon sets
+        $addProIconSet('sharp-light');
+        $addProIconSet('sharp-regular');
+        $addProIconSet('sharp-solid');
+        $addProIconSet('sharp-duotone-solid');
+        $addProIconSet('sharp-thin');
+
+        // Custom icon sets
+        $addProIconSet('custom', 'custom-icons');
     }
 }

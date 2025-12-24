@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace OwenVoke\BladeFontAwesome\Commands;
 
 use DirectoryIterator;
@@ -75,7 +73,7 @@ final class SyncIconsCommand extends Command
                 continue;
             }
 
-            new CompileSvgsAction($directory->getPathname(), $directory->getPathname())->execute();
+            (new CompileSvgsAction($directory->getPathname(), $directory->getPathname()))->execute();
 
             $sets[] = $directory->getBasename();
         }
