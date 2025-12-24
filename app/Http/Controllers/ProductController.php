@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\barang; // 1. Import model Barang
+use App\Models\Barang; // 1. Import model Barang
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
