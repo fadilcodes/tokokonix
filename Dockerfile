@@ -1,6 +1,6 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-# Copy semua file
+# Copy semua file (termasuk folder vendor yang bakal kita upload)
 COPY . .
 
 # Settingan Wajib
@@ -11,16 +11,9 @@ ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# --- PERUBAHAN DISINI ---
-# 1. Kita set SKIP_COMPOSER jadi 0 (false). 
-# Artinya: "Eh server, tolong installin composer pas lu nyala ya"
-ENV SKIP_COMPOSER 0
-
-# 2. Kita kasih akses memori tak terbatas buat composer biar gak crash
-ENV COMPOSER_MEMORY_LIMIT -1
-
-# 3. KITA HAPUS baris 'RUN composer install...'
-# Biar proses Build-nya cepet dan gak error di awal.
-# ------------------------
+# --- KUNCI SUKSES ---
+# Kita bilang: "Udah gausah install composer lagi, gw udah bawa!"
+ENV SKIP_COMPOSER 1
+# --------------------
 
 CMD ["/start.sh"]
