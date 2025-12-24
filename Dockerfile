@@ -1,6 +1,6 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-# Copy kodingan
+# Copy semua file
 COPY . .
 
 # Settingan Wajib
@@ -11,13 +11,16 @@ ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# --- PERBAIKAN DISINI ---
-# Kita tambahin '--no-scripts' biar dia gak rewel nyari .env pas lagi build
-# Kita tambahin '--no-progress' biar log-nya gak penuh sampah
-RUN composer install --no-dev --optimize-autoloader --no-scripts --no-progress
-# ------------------------
+# --- PERUBAHAN DISINI ---
+# 1. Kita set SKIP_COMPOSER jadi 0 (false). 
+# Artinya: "Eh server, tolong installin composer pas lu nyala ya"
+ENV SKIP_COMPOSER 0
 
-# Paksa update permission folder storage biar bisa upload gambar
-RUN chmod -R 777 storage bootstrap/cache
+# 2. Kita kasih akses memori tak terbatas buat composer biar gak crash
+ENV COMPOSER_MEMORY_LIMIT -1
+
+# 3. KITA HAPUS baris 'RUN composer install...'
+# Biar proses Build-nya cepet dan gak error di awal.
+# ------------------------
 
 CMD ["/start.sh"]
