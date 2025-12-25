@@ -34,7 +34,7 @@ if(Auth::check()){
             </ul>
             
            
-            @guest
+            <!-- @guest
                 <div class="hidden sm:flex">
                         <a href="{{ route('login') }}" class="font-semibold text-white p-2 pr-3 pl-3 rounded-md bg-[#01c2a2] hover:bg-[#01a68a]">
                         login 
@@ -43,7 +43,7 @@ if(Auth::check()){
                             <a href="{{ route('register') }}" class="ms-4 font-semibold text-gray-600 border border-[#01c2a2] p-2 pr-3 pl-3 rounded-md hover:bg-[#e7fffb]">Register</a>
                         @endif
                 </div>
-            @endguest
+            @endguest -->
     
 
             <div class="hidden lg:flex lg:items-center lg:ms-6">
