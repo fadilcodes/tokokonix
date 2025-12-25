@@ -32,16 +32,20 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-90 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+        <div class="flex flex-col items-end justify-end mt-4">
+            <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    <button class="text-1xl w-full  bg-[#01c2a2] pt-2 pb-2 rounded-lg font-bold text-white hover:bg-[#02aa8e]">{{ __('Log in') }}</button>
+            </x-responsive-nav-link>
+             @if (Route::has('password.request'))
+                <a class=" underline text-sm text-[#4a4a4a] hover:text-[#01c2a2] rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
         </div>
+       
     </form>
+     <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    <button class="text-1xl w-full border-2 border-[#01c2a2] pt-1 pb-1 rounded-lg font-bold">{{ __('Register') }}</button>
+                        </x-responsive-nav-link>
 </x-guest-layout>
