@@ -2,7 +2,7 @@
         <div class="">
             <p class="italic text-2xl">Konix Club's</p>
             <h1 class="text-3xl sm:text-5xl font-bold mb-5">The Vault Edition</h1>
-            <p>A vault exculsive addition to the Owners' 
+            <p class="text-[15px] sm:text-[16px]">A vault exculsive addition to the Owners' 
                 Club collection - featuring a new colourway black & cobalt. 
                 Showcasing a two piece collection which includes the oversized 
                 hoodie in a heavy weight jersey cotton with the short sleeve j

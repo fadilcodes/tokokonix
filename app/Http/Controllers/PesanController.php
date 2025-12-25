@@ -102,13 +102,17 @@ class PesanController extends Controller
 
     public function checkout($id)
     {
-        $pesanan = Pesanan::find($id);
+        // $pesanan = Pesanan::find($id);
+        $pesanan = Pesanan::where('user_id', Auth::user()->id)->where('status', 0)->first();
+        $snapToken = null;
         
         // Ambil detail biar bisa ditampilin list barangnya apa aja
         $pesanan_details = PesananDetail::where('pesanan_id', $pesanan->id)->get();
         
         // --- KONFIGURASI MIDTRANS ---
         // Set konfigurasi midtrans
+        if (!empty($pesanan) && $pesanan->jumlah_harga > 0) {
+            
         Config::$serverKey = config('midtrans.server_key');
         Config::$isProduction = config('midtrans.is_production');
         Config::$isSanitized = config('midtrans.is_sanitized');
@@ -116,19 +120,24 @@ class PesanController extends Controller
 
         // Buat params yang dikirim ke Midtrans
         $params = array(
-            'transaction_details' => array(
-                'order_id' => $pesanan->kode . '-' . time(),
-                'gross_amount' => $pesanan->jumlah_harga,
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-                'phone' => '081234567890', // Harusnya ambil dari DB user
-            ),
-        );
+        'transaction_details' => array(
+            'order_id' => $pesanan->kode . '-' . time(),
+            'gross_amount' => $pesanan->jumlah_harga, // <-- INI GAK BOLEH 0
+        ),
+        'customer_details' => array(
+            'first_name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'phone' => Auth::user()->nohp ?? '',
+        ),
+    );
 
-        // Ambil Snap Token dari Midtrans
+        try {
         $snapToken = Snap::getSnapToken($params);
+    } catch (\Exception $e) {
+        // Kalau error koneksi, biarin null atau log errornya
+        $snapToken = null; 
+    }
+}
         
         // Kirim $snapToken ke View
         return view('checkout', compact('pesanan', 'pesanan_details', 'snapToken'));

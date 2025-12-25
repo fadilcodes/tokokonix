@@ -3,14 +3,14 @@
 
 <div {{ $attributes->merge(['class' => 'relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden']) }}>
     
-    <div class="relative h-48 sm:h-64 overflow-hidden">
+    <div class="relative h-45 sm:h-64 overflow-hidden">
         @if ($isPromo)
             <span class="absolute top-2 left-2 px-3 py-1 text-xs font-bold text-white bg-red-600 rounded-full shadow-md z-10 uppercase">
                 Flash Sale!
             </span>
         @endif
         
-        <img src="{{ $gambar }}" alt="{{ $nama }}" class="h-full object-cover">
+        <img src="{{ $gambar }}" alt="{{ $nama }}" class="text-center items-center justify-center w-[150px] h-[150px] sm:w-[100%] sm:h-full object-cover">
     </div>
 
     <div class="pt-5 space-y-2 items-center">
@@ -19,12 +19,12 @@
         </h3>
 
         <p class="md:text-xl  text-base font-bold text-gray-900">
-            {{ 'Rp' . number_format($harga, 0, ',', '.') }}
+            {{ 'Rp. ' . number_format($harga, 0, ',', '.') }}
         </p>
 
          <a href="{{ url('pesan') }}/{{ $id }}">
             <x-button class="w-[80%] mb-4 mt-4 justify-center text-[10px] font-bold sm:text-sm hover:bg-[#02b295] text-center ">
-                Beli Sekarang
+                Beli
             </x-button>
         </a>
 
