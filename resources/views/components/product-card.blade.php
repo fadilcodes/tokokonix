@@ -10,10 +10,10 @@
             </span>
         @endif
         
-        <img src="{{ $gambar }}" alt="{{ $nama }}" class="w-full h-full object-cover">
+        <img src="{{ $gambar }}" alt="{{ $nama }}" class="h-full object-cover">
     </div>
 
-    <div class="p-4 space-y-2">
+    <div class="pt-5 space-y-2 items-center">
         <h3 class="md:text-xl  text-sm font-semibold text-gray-800 truncate hover:text-blue-600">
             <a href="#">{{ $nama }}</a>
         </h3>
@@ -23,7 +23,7 @@
         </p>
 
          <a href="{{ url('pesan') }}/{{ $id }}">
-            <x-button class="w-full justify-center text-sm hover:bg-[#02b295] m-3 text-center ">
+            <x-button class="w-[80%] mb-4 mt-4 justify-center text-[10px] font-bold sm:text-sm hover:bg-[#02b295] text-center ">
                 Beli Sekarang
             </x-button>
         </a>

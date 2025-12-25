@@ -3,22 +3,28 @@
      x-data="countdown('2025-12-30 23:59:59')" 
      x-init="init()">
 
-    <h1 class="text-3xl italic p-8 text-center"><span class="text-red-600 font-extrabold">FLASH⚡️</span> SALE</h1>
-    
+     <div class="md:flex ">
+     <div>
+        <h1 class="text-3xl italic p-5 text-cente"><span class="text-red-600 font-extrabold">FLASH⚡️</span> SALE</h1>
+    </div>
+
+    <div class="flex items-center gap-4 justify-center">
         <div class="bg-[#ff4d4d] text-white text-xl font-bold px-3 py-2 rounded shadow-md w-12 h-12 flex items-center justify-center">
         <span x-text="hours">00</span>
-    </div>
+        </div>
 
-    <span class="text-2xl font-bold text-gray-700">:</span>
+        <span class="text-2xl font-bold text-gray-700">:</span>
 
-    <div class="bg-[#ff4d4d] text-white text-xl font-bold px-3 py-2 rounded shadow-md w-12 h-12 flex items-center justify-center">
+        <div class="bg-[#ff4d4d] text-white text-xl font-bold px-3 py-2 rounded shadow-md w-12 h-12 flex items-center justify-center">
         <span x-text="minutes">00</span>
-    </div>
+         </div>
 
-    <span class="text-2xl font-bold text-gray-700">:</span>
+        <span class="text-2xl font-bold text-gray-700">:</span>
 
-    <div class="bg-[#ff4d4d] text-white text-xl font-bold px-3 py-2 rounded shadow-md w-12 h-12 flex items-center justify-center">
+        <div class="bg-[#ff4d4d] text-white text-xl font-bold px-3 py-2 rounded shadow-md w-12 h-12 flex items-center justify-center">
         <span x-text="seconds">00</span>
+        </div>
+    </div>
     </div>
 
     <script>
@@ -62,12 +68,11 @@
     }
 </script>
 
-
-
-
     </div>
+
+
     <div class="bg-[#ffe4e4]">
-        <div class=" flex flex-wrap justify-center gap-5 p-10">
+        <div class=" flex flex-wrap justify-center gap-2 sm:gap-5 pt-3 pb-3 sm:p-10">
             @foreach ($barangs as $barang)
                 <x-product-card 
                     gambar="{{url('img/product')}}/{{ $barang->gambar }}"
@@ -75,7 +80,7 @@
                     :harga="$barang->harga" 
                     :isPromo="$barang->is_promo"
                     :id="$barang->id"
-                    class="text-center items-center"
+                    class="text-center items-center justify-center sm:w-fit "
                 />
             @endforeach
         </div>
