@@ -13,7 +13,7 @@
             
                  <div class="flex flex-col sm:flex-row items-center sm:items-start mb-5 border-b border-gray-200 pb-5 gap-4 sm:gap-0"> 
                     
-                    <div class="w-full sm:w-[20%] flex justify-center sm:justify-start">
+                    <div class="w-full sm:w-[20%] flex justify-start">
                         <img src="{{ url('img/product') . '/' . $detail->barang->gambar }}" 
                            alt="{{ $detail->barang->nama_barang }}" 
                            class="w-32 h-32 sm:w-full sm:h-auto object-cover border rounded-lg shadow-sm">
@@ -89,7 +89,7 @@
                     </h3>
                 </div>
 
-                <button id="pay-button" class="w-full bg-[#02b295] hover:bg-[#029a81] text-white font-bold py-3.5 rounded-lg transition duration-300 shadow-lg transform active:scale-95 lg:hover:scale-105">
+                <button id="pay-button" class="w-full bg-[#02b295] hover:bg-[#029a81] text-white font-bold py-3.5 rounded-lg transition duration-300 transform active:scale-95 lg:hover:scale-105">
                     Bayar Sekarang
                 </button>
             </div>

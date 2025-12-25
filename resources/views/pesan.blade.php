@@ -9,11 +9,11 @@
 
     <div class="sm:w-1/2 items-center justify-center">
 
-      <div class="flex flex-col items-center justify-center">
-            <h3 class="text-2xl sm:text-[40px] text-gray-800 truncate font-bold">
+      <div class="flex flex-col justify-center">
+            <h3 class="text-2xl sm:text-[40px] sm:text-left text-center text-gray-800 mb-5 truncate font-bold">
                     {{ $barang->nama_barang }}
             </h3>
-            <p class="text-[25px] text-[#02b295] font-bold pb-5">
+            <p class="text-[25px] text-[#02b295] text-center sm:text-left font-bold pb-5">
                     {{ 'Rp. ' . number_format($barang->harga, 0, ',', '.') }}
             </p>
             <p class="text-center sm:text-left sm:text-xl  text-base text-gray-900 pb-5">
